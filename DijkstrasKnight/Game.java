@@ -1,19 +1,20 @@
+package DijkstrasKnight;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-
+	
 	String[][] gameBoard;
-
+	
 	/*
 	 * Game constructor
-	 *
+	 * 
 	 * Creates a scanner and calls the functions to generate the board and run the algorithm on the gameboard
 	 * The board is stored in the object itself, so all functions can be run on the object without input
 	 */
 	public Game() {
-
+		
 		Scanner scannerObj = new Scanner(System.in);
 		System.out.println("Please enter the number of rows for the board.");
 		int rows = scannerObj.nextInt();
@@ -21,10 +22,10 @@ public class Game {
 		int cols = scannerObj.nextInt();
 		this.gameBoard = generateCompleteBoard(rows, cols);
 	}
-
+	
 	// Generates a blank board
 	public String[][] generateBoard(int rows, int cols){
-
+		
 		String[][] blankBoard = new String[rows][cols];
 		for (int i=0; i<blankBoard.length; i++) {
 			for (int j=0; j<blankBoard[i].length; j++) {
@@ -33,7 +34,7 @@ public class Game {
 		}
 		return blankBoard;
 	}
-
+	
 	// Generates a board and randomly places the Knight and Gold pieces
 	public String[][] generateCompleteBoard(int rows, int cols){
 		// Creates the knight object
@@ -48,9 +49,9 @@ public class Game {
 		int knightY = coordinateGenerator.nextInt(cols);
 		int goldX = coordinateGenerator.nextInt(rows);
 		int goldY = coordinateGenerator.nextInt(cols);
-
+		
 		String[][] completeBoard = new String[rows][cols];
-
+		
 		/*
 		 * fills the blank "board" with . so that the board can be visualized in the console
 		 */
@@ -59,32 +60,32 @@ public class Game {
 				completeBoard[i][j] = ".";
 			}
 		}
-
+		
 		/*
 		 * while loop that continues until the knight and gold coordinates are not the same
 		 */
 		while (knightX == goldX && knightY == goldY) {
-
+			
 			knightX = coordinateGenerator.nextInt(rows);
 			knightY = coordinateGenerator.nextInt(cols);
 			goldX = coordinateGenerator.nextInt(rows);
 			goldY = coordinateGenerator.nextInt(cols);
-
-
+			
+			
 		}
 		// Sets the knightObj x and y coordinates for use in algorithms
 		knightObj.x = knightX;
 		knightObj.y = knightY;
-
+		
 		// designates the knight (K) and gold (G) coordinates and changes to those characters on the board
 		completeBoard[knightX][knightY] = "K";
 		completeBoard[goldX][goldY] = "G";
-
+		
 		knightObj.moveKnight(); // generates the random move the knight will perform
 		return completeBoard;
 	}
-
-
+	
+	
 	/*
 	 * printBoard: parameter String[][] boardIn
 	 * boardIn is the array that the game will run on
@@ -94,7 +95,7 @@ public class Game {
 		for (int i=0; i<boardIn[0].length; i++) {
     		if (i == 0)
 				System.out.print("  "+i+"\t");
-    		else
+    		else 
     			System.out.print(i+"\t");
     	}
     	System.out.println();
@@ -106,8 +107,8 @@ public class Game {
 			System.out.println();
 		}
 	}
-
-
+	
+	
 	/*
 	 * Prints the game object's gameBoard
 	 */
@@ -115,7 +116,7 @@ public class Game {
 		for (int i=0; i<this.gameBoard[0].length; i++) {
     		if (i == 0)
 				System.out.print("  "+i+"\t");
-    		else
+    		else 
     			System.out.print(i+"\t");
     	}
     	System.out.println();
@@ -127,5 +128,5 @@ public class Game {
 			System.out.println();
 		}
 	}
-
+	
 }
